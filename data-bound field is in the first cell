@@ -1,23 +1,11 @@
-<script type="text/javascript">
-    window.onload = function () {
-        var gridView = document.getElementById('<%= GridView1.ClientID %>');
-        var rows = gridView.getElementsByTagName('tr');
-
-        for (var i = 1; i < rows.length; i++) {
-            var columnValue = rows[i].cells[0].innerText; // Assuming the data-bound field is in the first cell
+ $(document).ready(function () {
+        // Assuming GridView1 is the ID of your GridView
+        $('#<%= GridView1.ClientID %> tr:gt(0)').each(function () {
+            var columnValue = $(this).find('td:first').text(); // Assuming the data-bound field is in the first cell
 
             if (columnValue === 'YourConditionHere') {
-                rows[i].classList.add('customRedText'); // Add your custom CSS class for red text
+                $(this).css('color', 'red'); // Set the font color to red
             }
-            // Add other conditions and classes as needed
-        }
-    };
-</script>
-
-
-<style type="text/css">
-    .customRedText {
-        color: red;
-        /* Add other styles as needed */
-    }
-</style>
+            // Add other conditions as needed
+        });
+    });
